@@ -14,8 +14,28 @@
 .todoList-task {
 
 }
+label,
+input {
+  cursor: pointer;
+}
 
 
 .filter-active {
   background-color: blue;
+}
+
+.error {
+  border-color: red;
+}
+
+.todoList-task.done {
+  opacity: 0.5;
+}
+
+.todoList-footer {
+  display: flex;
+}
+
+.todoList-footer-block {
+  margin-right: 20px;
 }
