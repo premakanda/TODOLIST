@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="efef0479-fc70-4eba-b2be-b008c675be33" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TodoListFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TodoListFooter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TodoListHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TodoListHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TodoListTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TodoListTask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TodoListTasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TodoListTasks.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +57,8 @@
       <workItem from="1573718656689" duration="340000" />
       <workItem from="1573835795783" duration="12217000" />
       <workItem from="1574323303655" duration="14363000" />
-      <workItem from="1574614605693" duration="11336000" />
+      <workItem from="1574614605693" duration="28579000" />
+      <workItem from="1575440676650" duration="8314000" />
     </task>
     <servers />
   </component>
@@ -76,15 +77,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/TodoListHeader.js</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
