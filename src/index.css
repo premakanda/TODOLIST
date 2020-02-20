@@ -5,9 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to bottom, rgba(250, 250, 250, 0.94), rgba(75, 69, 72, 0.94));
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.btn {
+  font-size: 16px;
+  line-height: 20;
+  color: #000;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: red;
 }

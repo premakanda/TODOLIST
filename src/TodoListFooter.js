@@ -2,7 +2,8 @@ import React from 'react';
 
 class TodoListFooter extends React.Component {
     state = {
-        isHidden: false
+        isHidden: false,
+
     }
 
     onAllFilterClick = () => {this.props.changeFilter('All')};
@@ -18,14 +19,15 @@ class TodoListFooter extends React.Component {
 
         return (
             <div className="todoList-footer">
-                {!this.state.isHidden && <div className="todoList-footer-block">
-                <button onClick={this.onAllFilterClick}
-                        className={classForAll}>All</button>
-                <button onClick={this.onCompletedFilterClick}
-                        className={classForCompleted}>Completed</button>
-                <button onClick={this.onActiveFilterClick}
-                        className={classForActive}>Active</button>
-            </div>
+                {!this.state.isHidden &&
+                    <div className="todoList-footer-block">
+                        <button onClick={this.onAllFilterClick}
+                                className={classForAll}>All</button>
+                        <button onClick={this.onCompletedFilterClick}
+                                className={classForCompleted}>Completed</button>
+                        <button onClick={this.onActiveFilterClick}
+                                className={classForActive}>Active</button>
+                    </div>
                 }
                 {!this.state.isHidden &&
                 <button onClick={this.onHideFiltersClick}>hide</button>}

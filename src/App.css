@@ -1,10 +1,23 @@
-.App {
+.app {
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 1200px;
+padding: 0 15px;
+}
 
+.appWrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .todoList {
-  width: 500px;
-  margin: 0 auto;
+  width: 280px;
+  min-height: 350px;
+  margin-right: 20px;
+  background-color: #fff;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .todoList > div {
@@ -12,7 +25,19 @@
 }
 
 .todoList-task {
+position: relative;
+}
 
+.buttonClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  border: none;
+  color: red;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
 }
 label,
 input {
@@ -38,4 +63,35 @@ input {
 
 .todoList-footer-block {
   margin-right: 20px;
+}
+
+
+.btnNewTaskForm {
+  background-color: green;
+  composes: btn from "../index.css";
+ 
+}
+
+.todoList-header__wrapper {
+  position: relative;
+  display: flex;
+ align-items: center;
+}
+
+.btnClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  border: none;
+  color: red;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.titile-newTaskForm {
+  width: 250px;
+  padding: 40px 0;
+  margin: 0 auto;
 }
