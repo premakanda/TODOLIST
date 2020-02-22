@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import {ITask} from "./types/types";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.1/todo-lists",
@@ -8,27 +9,27 @@ const instance = axios.create({
 });
 
 export const api = {
-    createTask(newTaskTitle, todolistId) {
+    createTask(newTaskTitle:string, todolistId:string) {
         return instance.post(`/${todolistId}/tasks`, {
             title: newTaskTitle
         });
     },
 
-    createTodolist(title) {
+    createTodolist(title:string) {
         return instance.post("", {
             title: title
         });
     },
 
-    updateTask(obj) {
+    updateTask(obj: ITask) {
         return instance.put(`/${obj.todoListId}/tasks/${obj.id}`, obj);
     },
 
-    deleteTodolist(todolistId) {
+    deleteTodolist(todolistId:string) {
         return instance.delete(`/${todolistId}`);
     },
 
-    deleteTask(taskId, todolistId) {
+    deleteTask(taskId:string, todolistId:string) {
         return instance.delete(`/${todolistId}/tasks/${taskId}`);
     },
 
@@ -37,11 +38,11 @@ export const api = {
 
     },
 
-    getTasks(todolistId) {
+    getTasks(todolistId:string) {
         return instance.get(`/${todolistId}/tasks`);
     },
 
-    updateTodolistTitle(title, todolistId) {
+    updateTodolistTitle(title:string, todolistId:string) {
         return instance.put(`/${todolistId}`, {title} );
     }
 

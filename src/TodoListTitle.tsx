@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
-class TodoListTitle extends React.Component {
-    state = {
+interface IProps {
+    title: string;
+    updateTodoTitle: (todoTitle: string)=>void;
+    deleteTodolist: ()=>void
+}
+
+interface IState {
+    editTitle: boolean;
+    title: string;
+}
+
+class TodoListTitle extends React.Component <IProps, IState> {
+    state: IState = {
         editTitle: false,
         title: this.props.title
     }
+
 
     deActivatedEdit = () => {
         this.setState({editTitle: false});
         this.props.updateTodoTitle(this.state.title);
     }
 
-    onTitleChanged = (e) => {
+    onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({title: e.currentTarget.value});
     }
 

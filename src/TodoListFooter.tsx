@@ -1,10 +1,21 @@
 import React from 'react';
+import {ITask} from "./types/types";
 
-class TodoListFooter extends React.Component {
-    state = {
+interface IProps {
+    filterValue: string;
+    changeFilter: (value:string)=> void
+}
+
+interface IState {
+    isHidden: boolean
+
+}
+
+class TodoListFooter extends React.Component <IProps, IState> {
+
+    state: IState = {
         isHidden: false,
-
-    }
+    };
 
     onAllFilterClick = () => {this.props.changeFilter('All')};
     onCompletedFilterClick = () => {this.props.changeFilter('Completed')};

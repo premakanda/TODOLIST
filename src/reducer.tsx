@@ -1,4 +1,6 @@
 import {api} from "./api";
+import { ITask, ITodolist} from "./types/types";
+import {Dispatch} from "redux";
 
 export const SET_TODOLISTS = "TodoList/Reducer/SET_TODOLISTS";
 export const ADD_TODOLIST = "TodoList/Reducer/ADD-TODOLIST";
@@ -9,31 +11,22 @@ export const SET_TASKS = "TodoList/Reducer/SET_TASKS";
 export const UPDATE_TASK = "TodoList/Reducer/UPDATE-TASK";
 export const UPDATE_TODOLIST = "TodoList/Reducer/UPDATE-TASK";
 
-const initialState = {
-    todolists: [
-        /* {
-             "id": 0, "title": "every day",
-             tasks: [
-                 {"title": "css11", "isDone": false, "priority": "low", "id": 0},
-                 {"title": "js", "isDone": false, "priority": "low", "id": 1},
-                 {"title": "react", "isDone": false, "priority": "low", "id": 2},
-                 {"title": "sasasa", "isDone": false, "priority": "low", "id": 3},
-                 {"title": "yoaa", "isDone": false, "priority": "low", "id": 4},
-                 {"title": "sddsdsds", "isDone": false, "priority": "low", "id": 5}]
-         },
-         {"id": 1, "title": "tomorrow", tasks: []},
-         {"id": 2, "title": "weewwe", tasks: []},
-         {"id": 3, "title": "dddd", tasks: []}*/
-    ]
+interface IInitialState {
+    todolists: Array<ITodolist>
 }
 
-const reducer = (state = initialState, action) => {
+
+const initialState:IInitialState = {
+    todolists: []
+}
+
+const reducer = (state:IInitialState = initialState, action: any): IInitialState => {
     switch (action.type) {
 
         case SET_TASKS:
             return {
                 ...state,
-                todolists: state.todolists.map(tl => {
+                todolists: state.todolists.map((tl: ITodolist) => {
                     if (tl.id === action.todolistId) {
                         return {
                             ...tl,
@@ -45,7 +38,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case SET_TODOLISTS:
-            let todolists = action.todolists.map(tl => {
+            let todolists = action.todolists.map((tl: ITodolist) => {
                 return {
                     ...tl,
                     tasks: []
@@ -69,16 +62,16 @@ const reducer = (state = initialState, action) => {
         case DELETE_TODOLIST:
             return {
                 ...state,
-                todolists: state.todolists.filter(tl => tl.id != action.todolistId)
+                todolists: state.todolists.filter((tl: ITodolist) => tl.id !== action.todolistId)
             }
         case DELETE_TASK:
             return {
                 ...state,
-                todolists: state.todolists.map(tl => {
+                todolists: state.todolists.map((tl: ITodolist) => {
                     if (tl.id === action.todolistId) {
                         return {
                             ...tl,
-                            tasks: tl.tasks.filter(t => t.id != action.taskId)
+                            tasks: tl.tasks.filter(t => t.id !== action.taskId)
                         }
                     } else {
                         return tl
@@ -88,7 +81,7 @@ const reducer = (state = initialState, action) => {
         case ADD_TASK:
             return {
                 ...state,
-                todolists: state.todolists.map(tl => {
+                todolists: state.todolists.map((tl: ITodolist) => {
                     if (tl.id === action.todolistId) {
                         return {...tl, tasks: [...tl.tasks, action.newTask]}
                     } else {
@@ -99,12 +92,12 @@ const reducer = (state = initialState, action) => {
         case UPDATE_TASK:
             return {
                 ...state,
-                todolists: state.todolists.map(tl => {
+                todolists: state.todolists.map((tl: ITodolist) => {
                     if (tl.id === action.todolistId) {
                         return {
                             ...tl,
                             tasks: tl.tasks.map(t => {
-                                if (t.id != action.taskId) {
+                                if (t.id !== action.taskId) {
                                     return t;
                                 } else {
                                     return {...t, ...action.obj};
@@ -120,41 +113,91 @@ const reducer = (state = initialState, action) => {
     console.log("reducer: ", action);
     return state;
 }
+interface IUpdateTaskAC  {
+    type: string;
+    taskId: string;
+    todolistId: string;
+    obj: ITask;
+}
 
-export const updateTaskAC = (taskId, obj, todolistId) => {
+export const updateTaskAC = (taskId: string, obj: ITask, todolistId: string):IUpdateTaskAC  => {
     return {type: UPDATE_TASK, taskId, obj, todolistId};
 }
-export const deleteTodolistAC = (todolistId) => {
+
+interface IDeleteTodolistAC {
+    type: string;
+    todolistId: string;
+}
+
+export const deleteTodolistAC = (todolistId: string):IDeleteTodolistAC  => {
     return {
         type: DELETE_TODOLIST,
         todolistId: todolistId
     };
 }
-export const deleteTaskAC = (taskId, todolistId) => {
+
+interface IDeleteTaskAC {
+    type: string;
+    taskId: string;
+    todolistId: string;
+}
+
+export const deleteTaskAC = (taskId: string, todolistId: string):IDeleteTaskAC => {
     return {
         type: DELETE_TASK,
         taskId,
         todolistId
     };
 }
-export const addTaskAC = (newTask, todolistId) => {
+
+interface IAddTaskAC  {
+    type: string;
+    newTask: string
+    todolistId: string;
+}
+
+export const addTaskAC = (newTask: string, todolistId: string):IAddTaskAC => {
     return {type: ADD_TASK, newTask, todolistId};
 }
-export const setTasksAC = (tasks, todolistId) => {
+
+interface ISetTasksAC {
+    type: string;
+    todolistId: string
+    tasks: Array<ITask>;
+}
+
+export const setTasksAC = (tasks: Array<ITask>, todolistId: string):ISetTasksAC => {
     return {type: SET_TASKS, tasks, todolistId};
 }
 
-export const setTodolistsAC = (todolists) => {
+interface ISetTodolistsAC {
+    type: string;
+    todolists: Array<ITodolist>;
+}
+
+export const setTodolistsAC = (todolists: Array<ITodolist>):ISetTodolistsAC => {
     return {type: SET_TODOLISTS, todolists};
 }
-export const addTodolistAC = (newTodolist) => {
+
+interface IAddTodolistAC {
+    type: string;
+    newTodolist: string;
+}
+
+export const addTodolistAC = (newTodolist: string):IAddTodolistAC => {
     return {
         type: ADD_TODOLIST,
         newTodolist: newTodolist
     }
 }
 
-export const updateTodolistTitleAC = (newTodolistTitle, todolistId) => {
+interface IUpdateTodolistTitleAC {
+    type: string;
+    newTodolistTitle: string;
+    todolistId: string;
+}
+
+export const updateTodolistTitleAC = (newTodolistTitle: string, todolistId: string): IUpdateTodolistTitleAC => {
     return {
         type: UPDATE_TODOLIST,
         newTodolistTitle,
@@ -162,45 +205,48 @@ export const updateTodolistTitleAC = (newTodolistTitle, todolistId) => {
     }
 }
 
-export const getTodolistTC = () => (dispatch, getState) => {
+export const getTodolistTC = () => (dispatch:Dispatch) => {
     api.getTodolists().then(res => {
         dispatch(setTodolistsAC(res.data));
     });
 }
 
-export const createTodolistTC = (newTodoList) => (dispatch, getState) => {
+export const createTodolistTC = (newTodoList: string) => (dispatch:Dispatch) => {
     api.createTodolist(newTodoList).then(res => {
         let newTodoList = res.data.data.item;
         dispatch(addTodolistAC(newTodoList));
     })
 }
 
-export const getTasksTC = (todolistId) => (dispatch, getState) => {
+export const getTasksTC = (todolistId: string) => (dispatch:Dispatch) => {
     api.getTasks(todolistId).then((res) => {
         let tasks = res.data.items;
         dispatch(setTasksAC(tasks, todolistId));
     })
 }
 
-export const addTaskTC = (newText, todolistId) => (dispatch, getState) => {
+export const addTaskTC = (newText: string, todolistId: string) => (dispatch:Dispatch) => {
     api.createTask(newText, todolistId).then((res) => {
         let newTask = res.data.data.item;
         dispatch(addTaskAC(newTask, todolistId));
     })
 }
 
-export const updateTaskTC = (taskId, obj, todolistId) => {
+export const updateTaskTC = (taskId: string, obj: [], todolistId: string) => {
 
-    return (dispatch, getState) => {
+    return (dispatch: Dispatch, getState:any) => {
         getState()
-            .todolists.find(tl => tl.id === todolistId)
-            .tasks.forEach(t => {
+            .reducer
+            .todolists.find((tl: ITodolist) => tl.id === todolistId)
+            .tasks.forEach((t: ITask) => {
             if (t.id === taskId) {
+                debugger
                 api.updateTask({...t, ...obj})
                     .then((res) => {
+debugger
                         let newTask = res.data.data.item;
                         if (res.data.resultCode === 0) {
-                            dispatch(updateTaskAC(newTask));
+                            dispatch(updateTaskAC(newTask.id, newTask, newTask.todolistId));
                         }
                     });
 
@@ -208,7 +254,7 @@ export const updateTaskTC = (taskId, obj, todolistId) => {
         })
     }
 }
-export const deleteTodolistTC = (todolistId) => (dispatch, getState) => {
+export const deleteTodolistTC = (todolistId: string) => (dispatch: Dispatch) => {
     api.deleteTodolist(todolistId).then((res) => {
         if (res.data.resultCode === 0) {
             dispatch(deleteTodolistAC(todolistId));
@@ -216,14 +262,14 @@ export const deleteTodolistTC = (todolistId) => (dispatch, getState) => {
     })
 }
 
-export const deleteTaskTC = (taskId, todolistId) => (dispatch, getState) => {
+export const deleteTaskTC = (taskId: string, todolistId: string) => (dispatch:Dispatch) => {
     api.deleteTask(taskId, todolistId).then((res) => {
         dispatch(deleteTaskAC(taskId, todolistId));
     })
 }
 
 
-export const updateTodolistTitleTC = (newTodolistTitle, todolistId) => (dispatch, getState) => {
+export const updateTodolistTitleTC = (newTodolistTitle: string, todolistId: string) => (dispatch:Dispatch) => {
     api.updateTodolistTitle(newTodolistTitle, todolistId)
         .then((res) => {
             if (res.data.resultCode === 0) {
